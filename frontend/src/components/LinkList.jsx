@@ -21,7 +21,7 @@ export default function LinkList({ links, onDelete }) {
       </div>
       <div className="space-y-3">
         {links.map((link) => (
-          <LinkItem key={link._id} link={link} onDelete={onDelete} />
+          <LinkItem key={link.id || link._id} link={link} onDelete={onDelete} />
         ))}
       </div>
     </div>

@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import api from '../services/api';
 
 export default function LinkItem({ link, onDelete }) {
+  const linkId = link.id || link._id;
   const [copied, setCopied] = useState(false);
   const [prevClicks, setPrevClicks] = useState(link.clicks);
   const [pulse, setPulse] = useState(false);
@@ -82,7 +83,7 @@ export default function LinkItem({ link, onDelete }) {
   const handleDelete = async () => {
     setDeleting(true);
     try {
-      await onDelete(link._id);
+      await onDelete(linkId);
     } catch (err) {
       console.error('Delete failed', err);
       setDeleting(false);
