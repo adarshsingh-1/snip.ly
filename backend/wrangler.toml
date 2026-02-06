@@ -1,10 +1,6 @@
 name = "snip-ly-worker"
 main = "worker.js"
-compatibility_date = "2025-02-06"In Pages Settings → Environment variables, make sure Production has:
-VITE_API_BASE = https://snip-ly-worker.adarsh22082012.workers.dev/api
-VITE_SHORT_DOMAIN = https://snip-ly-worker.adarsh22082012.workers.dev
-Redeploy the Pages project after saving variables.
-Refresh the site (hard refresh).
+compatibility_date = "2025-02-06"
 
 [vars]
 CORS_ORIGIN = "*"
