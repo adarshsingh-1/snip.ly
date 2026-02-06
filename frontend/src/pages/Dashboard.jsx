@@ -5,7 +5,7 @@ import LinkShortener from '../components/LinkShortener';
 import LinkList from '../components/LinkList';
 import { useLinks } from '../hooks/useLinks';
 
-export default function Dashboard() {
+export default function Dashboard({ theme, onToggleTheme }) {
   const navigate = useNavigate();
   // Add deleteLink here ↓
   const { links, createLink, deleteLink, loading, error, initialLoading, refresh } = useLinks();
@@ -25,16 +25,24 @@ export default function Dashboard() {
     }
   }, [navigate]);
 
+
   const handleLogout = () => {
-    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     navigate('/login');
   };
 
   const totalClicks = links.reduce((sum, link) => sum + (link.clicks || 0), 0);
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <Navbar onLogout={handleLogout} totalLinks={links.length} totalClicks={totalClicks} />
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+      <Navbar
+        onLogout={handleLogout}
+        totalLinks={links.length}
+        totalClicks={totalClicks}
+        theme={theme}
+        onToggleTheme={onToggleTheme}
+      />
       <div className="max-w-4xl mx-auto px-6 py-12">
         <LinkShortener onSubmit={createLink} loading={loading} error={error} userName={userName} />
         

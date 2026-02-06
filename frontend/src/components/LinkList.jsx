@@ -15,7 +15,7 @@ export default function LinkList({ links, onDelete }) {
   return (
     <div className="mt-12">
       <div className="flex justify-between items-center mb-6">
-        <h3 className="text-xl font-bold text-slate-900">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
           Your links <span className="text-sm font-normal text-slate-500 dark:text-slate-400">({links.length})</span>
         </h3>
       </div>

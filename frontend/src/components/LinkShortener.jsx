@@ -37,7 +37,7 @@ export default function LinkShortener({ onSubmit, loading, error, userName }) {
 
   return (
     <div className="text-center">
-      <h2 className="text-2xl font-bold text-slate-900 mb-8">
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-8">
         {getGreeting()}, {displayName}
       </h2>
 
@@ -45,14 +45,14 @@ export default function LinkShortener({ onSubmit, loading, error, userName }) {
 
       <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 w-full">
         <input
-          className="w-full max-w-2xl rounded-lg border-2 border-slate-800 px-4 py-3 text-center text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-slate-900 transition"
+          className="w-full max-w-2xl rounded-lg border-2 border-slate-800 dark:border-slate-600 bg-white dark:bg-slate-950 px-4 py-3 text-center text-slate-900 dark:text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-slate-900 dark:focus:border-slate-500 transition"
           placeholder="paste your link here"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
         <button
           disabled={loading}
-          className="w-48 rounded-lg border-2 border-slate-800 bg-white px-8 py-3 font-bold text-lg text-slate-900 hover:bg-slate-800 hover:text-white transition disabled:opacity-50"
+          className="w-48 rounded-lg border-2 border-slate-800 dark:border-slate-600 bg-white dark:bg-slate-900 px-8 py-3 font-bold text-lg text-slate-900 dark:text-slate-100 hover:bg-slate-800 dark:hover:bg-slate-700 hover:text-white transition disabled:opacity-50"
         >
           {loading ? 'Snipping...' : 'Snip It!'}
         </button>
