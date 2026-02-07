@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import LinkShortener from '../components/LinkShortener';
 import api from '../services/api';
 
-export default function Home() {
+export default function Home({ theme = 'light', onToggleTheme }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState(null);
@@ -30,6 +30,16 @@ export default function Home() {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
       <div className="max-w-4xl mx-auto px-6 py-10">
         <div className="flex flex-col items-center text-center gap-3 mb-10">
+          <div className="w-full flex items-center justify-end">
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="text-sm text-slate-600 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white transition"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
+            </button>
+          </div>
           <h1 className="text-4xl font-extrabold text-blue-600">Snip.ly</h1>
           <p className="text-slate-600 dark:text-slate-400">
             Shorten any link without logging in. Sign in when you want your dashboard.

@@ -379,6 +379,10 @@ export default {
       }
 
       if (pathname.startsWith('/api/links')) {
+        if (req.method === 'POST' && pathname === '/api/links/public') {
+          return withCors(req, await handleCreateLink(req, env, null), env)
+        }
+
         const userId = await getAuthUser(req, env)
         if (!userId) {
           return withCors(req, json({ message: 'No token, authorization denied' }, 401), env)
