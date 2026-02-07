@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 
-export default function LinkShortener({ onSubmit, loading, error, userName }) {
+export default function LinkShortener({ onSubmit, loading, error, userName, showGreeting = true }) {
   const [url, setUrl] = useState('')
 
   const handleSubmit = (e) => {
@@ -15,6 +15,7 @@ export default function LinkShortener({ onSubmit, loading, error, userName }) {
 
   // Fallback name if prop is empty
   const displayName = useMemo(() => {
+    if (!showGreeting) return ''
     if (userName && userName.trim()) return userName.trim()
     try {
       const u = JSON.parse(localStorage.getItem('user') || '{}')
@@ -22,7 +23,7 @@ export default function LinkShortener({ onSubmit, loading, error, userName }) {
     } catch {
       return 'User'
     }
-  }, [userName])
+  }, [showGreeting, userName])
 
   // Greeting in IST (UTC+5:30)
   const getGreeting = () => {
@@ -37,9 +38,11 @@ export default function LinkShortener({ onSubmit, loading, error, userName }) {
 
   return (
     <div className="text-center">
-      <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-8">
-        {getGreeting()}, {displayName}
-      </h2>
+      {showGreeting && (
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-8">
+          {getGreeting()}, {displayName}
+        </h2>
+      )}
 
       {error && <p className="mb-4 text-sm text-red-600">{error}</p>}
 

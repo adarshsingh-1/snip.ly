@@ -92,7 +92,7 @@ exports.createLink = async (req, res) => {
     const link = await Link.create({
       shortId,
       originalUrl: normalizedUrl,
-      userId: req.userId
+      userId: req.userId || undefined
     });
 
     const shortDomain = process.env.SHORT_DOMAIN || `http://localhost:${process.env.PORT || 3000}`;
